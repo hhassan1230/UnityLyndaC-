@@ -236,6 +236,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 497840}
   - 65: {fileID: 6597840}
+  - 114: {fileID: 11438706}
   m_Layer: 0
   m_Name: Side Trigger
   m_TagString: Untagged
@@ -494,7 +495,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 197842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5078719, y: -6.3008858e-18, z: 28.376665}
+  m_LocalPosition: {x: 13.14, y: -0, z: 28.376665}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 497844}
@@ -639,6 +640,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2321fb3ebf20f49c7b28a9310269a6ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11438706
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533b2feec45174928a32ff75a09ae31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11497840

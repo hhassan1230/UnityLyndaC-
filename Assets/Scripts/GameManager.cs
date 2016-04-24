@@ -18,11 +18,38 @@ public class GameManager : Singleton<GameManager> {
 		set { _numCoins = value; }
 	}
 
+	private float _playerHealth;
+
+	public float PlayerHealth 
+	{
+		get { return _playerHealth; }
+		set { _playerHealth = value; }
+	}
+
+	private float maxHealth = 3;
+
 	private float maxTime = 5 * 60; // In seconds.
+
+
+	private bool isInvulnerable = false;
+
+	void OnEnable()
+	{
+		DamagePlayerEvent.OnDamagePlayer += DecrementPlayerHealth;
+
+	}
+
+	void OnDisable()
+	{
+		DamagePlayerEvent.OnDamagePlayer -= DecrementPlayerHealth;
+
+	}
 
 	// Use this for initialization
 	void Start () {
 		TimeRemaining = maxTime;
+		PlayerHealth = maxHealth;
+
 	}
 	
 	// Update is called once per frame
@@ -31,8 +58,44 @@ public class GameManager : Singleton<GameManager> {
 
 		if(TimeRemaining <= 0)
 		{
-			Application.LoadLevel (Application.loadedLevel);
-			TimeRemaining = maxTime;
+			Restart ();
 		}
+	}
+
+	private void DecrementPlayerHealth(GameObject player)
+	{
+		if (isInvulnerable) 
+		{
+			return;
+		}
+
+		StartCoroutine (InvulnerableDelay ());
+
+		PlayerHealth--;
+
+		if (PlayerHealth <= 0) 
+		{
+			Restart ();
+
+		}
+	}
+
+	private void Restart()
+	{
+		Application.LoadLevel (Application.loadedLevel);
+		TimeRemaining = maxTime;
+		PlayerHealth = maxHealth;
+	}
+
+	private IEnumerator InvulnerableDelay()
+	{
+		isInvulnerable = true;
+		yield return new WaitForSeconds (1.0f);
+		isInvulnerable = false;
+	}
+
+	public float GetPlayerHealthPercentage()
+	{
+		return PlayerHealth / (float)maxHealth;
 	}
 }
